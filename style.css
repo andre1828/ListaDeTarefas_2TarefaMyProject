@@ -1,0 +1,15 @@
+.heading,
+.input-group{
+	margin-bottom: 20px ;
+}
+
+.panel-heading{
+	display: flex;
+	
+}
+
+.btn.btn-xs.btn-danger{
+	display: inline;
+	float: right;
+}
+

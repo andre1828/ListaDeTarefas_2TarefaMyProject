@@ -11,14 +11,15 @@
 
 <body>
 
-		<div class="col-lg-12">
+		<div class="col-lg-6 col-lg-offset-3">
 			
-			<input class="form-control" id="input" placeholder="Task">
-    		<button class="btn btn-primary" onclick="addTask()" >Add</button>
+				<input class="form-control" onkeypress="testeInput(event)" id="input" placeholder="Task">
+
 		</div>
+	
 		<br />
 
-    	<div class="col-xs-12"></div>
+    	<div class="col-sm-6 col-sm-offset-3" id="taskList"></div>
 
 <script type="text/javascript" src="script.js"></script>
 

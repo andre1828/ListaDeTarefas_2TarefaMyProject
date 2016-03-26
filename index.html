@@ -6,6 +6,7 @@
   <title>Task List</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   
 </head>
 
@@ -13,13 +14,24 @@
 
 		<div class="col-lg-6 col-lg-offset-3">
 			
-				<input class="form-control" onkeypress="testeInput(event)" id="input" placeholder="Task">
+				<h1 class="heading">My To-Do List</h1>
+
+				<div class="input-group">
+					<input class="form-control" id="input" placeholder="Task">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="addTask(event)" >Add</button>
+					</span>
+				</div>
 
 		</div>
 	
 		<br />
 
-    	<div class="col-sm-6 col-sm-offset-3" id="taskList"></div>
+    	<div class="col-sm-6 col-sm-offset-3" id="taskList">
+    		<ul id="list-group">
+    			
+    		</ul>
+    	</div>
 
 <script type="text/javascript" src="script.js"></script>
 

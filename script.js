@@ -1,14 +1,11 @@
-var panelCount = 0;
 
    function addTask(e)
   {
-    if(document.getElementById("input").value == "" ) return;        // If input text box is empty or pressed key is not "enter", do not create task
+    if(document.getElementById("inputTask").value == "" ) return;    // If input text box is empty or pressed key is not "enter", do not create task
 
     var newPanel = document.createElement("div");                    // Creates a new div 
     
     newPanel.className += "panel panel-info";                        // Adds class name to apply Bootstrap theme
-    
-    newPanel.id =  panelCount++ ;                                    // Sets id for the current panel based on panelCount , and increments panelCount
 
     panelHeading = document.createElement("div");                    // Creates panel's heading                   
 
@@ -18,7 +15,7 @@ var panelCount = 0;
 
     h4.className += "panel-title";                                   // Adds class to apply Bootstrap theme
 
-    h4.innerText = "Task " + panelCount ;                            // Adds Task + number as title of task
+    h4.innerText = document.getElementById("taskTitle").value;       // Adds content from input to body of task
  
     var deleteBtn =  document.createElement("button");               // Creates button
 
@@ -40,25 +37,23 @@ var panelCount = 0;
 
     newP = document.createElement("p");                              // Creates a p tag
     
-    newP.innerText = document.getElementById("input").value;         // Gets content from input box and applies to newP
+    newP.innerText = document.getElementById("inputTask").value;     // Gets content from input box and applies to newP
 
     newPanel.appendChild(newP);                                      // Adds the p tag  to the panel
                                       
-    document.getElementById("taskList").appendChild(newPanel);       // Adds newPanel to 
+    document.getElementById("taskList").appendChild(newPanel);       // Adds newPanel to the list
     
     }
 
 
   function deleteTask()
   {
-    var id = this.parentNode.parentNode.id;                          // Gets id of panel
-    document.getElementById(id).remove();                            // Deletes the panel
-    panelCount--;                                                    // decreases panelCount
+    this.parentNode.parentNode.remove(); 
   }
 
   function setTaskAsDone()   /* TODO */
   {
-    var id = this.parentNode.id;
-    var currentText = document.getElementById(id).innerText;
-    document.getElementById(id).innerText = currentText.del();
+    var task = this.parentNode.parentNode;
+    var currentText = document.getElementById(task).innerText;
+    task.innerText = currentText.del();
   }

@@ -12,20 +12,27 @@
 
 <body>
 
-		<div class="col-lg-6 col-lg-offset-3">
+		<div class="col-lg-6 col-lg-offset-3 " id="input-heading">
 			
 				<h1 class="heading">My To-Do List</h1>
 
 				<div class="input-group">
-					<input class="form-control" id="input" placeholder="Task">
+					<input  class="form-control" id="taskTitle" placeholder="Title">
+					<span class="input-group-btn">
+						<button class="btn btn-default glyphicon glyphicon-text-size" type="button" disabled="disabled"></button>
+					</span>
+				</div>
+
+
+				<div class="input-group">
+					<input class="form-control" id="inputTask" placeholder="Task">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button" onclick="addTask(event)" >Add</button>
 					</span>
 				</div>
-
+				
 		</div>
-	
-		<br />
+
 
     	<div class="col-sm-6 col-sm-offset-3" id="taskList">
     		<ul id="list-group">

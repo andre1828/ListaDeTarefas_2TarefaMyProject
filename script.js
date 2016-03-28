@@ -1,8 +1,23 @@
+  var taskList = [] ; 
 
    function addTask(e)
   {
     if(document.getElementById("inputTask").value == "" ) return;    // If input text box is empty or pressed key is not "enter", do not create task
 
+    var inputTaskValue = document.getElementById("inputTask").value;
+
+    var taskTitleValue = document.getElementById("taskTitle").value;
+
+    var newTask = createTask(inputTaskValue, taskTitleValue );
+                                      
+    document.getElementById("taskList").appendChild(newTask);       // Adds newPanel to the list
+    
+    storeTaskLocally(taskTitleValue, inputTaskValue);
+
+    }
+
+  function createTask(inputTask, taskTitle)
+  {
     var newPanel = document.createElement("div");                    // Creates a new div 
     
     newPanel.className += "panel panel-info";                        // Adds class name to apply Bootstrap theme
@@ -15,7 +30,7 @@
 
     h4.className += "panel-title";                                   // Adds class to apply Bootstrap theme
 
-    h4.innerText = document.getElementById("taskTitle").value;       // Adds content from input to body of task
+    h4.innerText = taskTitle;                                        // Adds content from input to body of task
  
     var deleteBtn =  document.createElement("button");               // Creates button
 
@@ -37,23 +52,60 @@
 
     newP = document.createElement("p");                              // Creates a p tag
     
-    newP.innerText = document.getElementById("inputTask").value;     // Gets content from input box and applies to newP
+    newP.innerText = inputTask;                                      // Gets content from input box and applies to newP
 
     newPanel.appendChild(newP);                                      // Adds the p tag  to the panel
-                                      
-    document.getElementById("taskList").appendChild(newPanel);       // Adds newPanel to the list
-    
-    }
+
+    return newPanel;
+  }
 
 
   function deleteTask()
   {
     this.parentNode.parentNode.remove(); 
+
   }
 
   function setTaskAsDone()   /* TODO */
   {
     var task = this.parentNode.parentNode;
-    var currentText = document.getElementById(task).innerText;
     task.innerText = currentText.del();
   }
+
+  function loadTasks()
+  {
+    var JSONtaskList = localStorage.getItem('JSONtaskList');
+    var taskList = JSON.parse(JSONtaskList);
+
+    if (!taskList) return;
+
+    if(taskList.length > 0)
+    {
+      for (var i = 0; i < taskList.length; i++) 
+      {
+        newTask = JSON.parse(taskList[i]);
+
+        var newTask = createTask(newTask.body, newTask.title);
+
+        document.getElementById("taskList").appendChild(newTask);
+      }
+    }
+  }
+
+  function storeTaskLocally(title, body)
+  {
+    var task = {title : title, body : body};
+    
+    var JSONtask = JSON.stringify(task);
+  
+    taskList.push(JSONtask);
+   
+    var JSONtaskList = JSON.stringify(taskList);
+
+    localStorage.setItem('JSONtaskList', JSONtaskList);
+  }
+
+  /*function clearLocalStorage()   //JUST FOR DEV PURPOSES
+  {
+      localStorage.clear();
+  }*/
